@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Trivia Game - Movies</title>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="stylesheet" href="assets/css/reset.css" type="text/css">
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+	<link rel="stylesheet" href="assets/css/style.css" type="text/css">
+
+	<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+
+	<script type="text/javascript" src="assets/javascript/app.js"></script>
+</head>
+<body>
+
+	<div id="questionArea">
+		<h1>Trivia Game!: <span id="gold">Movie Edition</span></h1>
+
+		<p id="btnWrapper"><button class="text-center btn btn-default" id="begin">Begin!</button></p>
+
+		<div id="gameStart">	
+			<p class="timeRemaining">Time Remaining: <span id="time">45</span></p>
+
+			<p class="questions"></p>
+
+			<p class="answers answer1"></p>
+			<p class="answers answer2"></p>
+			<p class="answers answer3"></p>
+			<p class="answers answer4"></p>
+		</div>
+
+		<div id="divCorrectAnswers">
+			<p class="timeRemaining">Time Remaining: <span id="elapsedTime"></span></p>
+			<p id="outOfTime">Out of Time!</p>
+
+			<p id="pCorrectAnswer">The correct answer is: <span></span></p>
+
+
+		</div>
+
+	</div>
+
+</body>
+</html>

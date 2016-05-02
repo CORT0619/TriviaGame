@@ -1,0 +1,53 @@
+body {color: #FFF;
+	  background-image: url('../images/movie_reel.png');}
+
+div#questionArea {background-color: #000;
+				  width: 60%;
+				  height: 400px;
+				  margin: 150px auto;
+				  padding-top: 20px;
+				  padding-bottom: 20px;
+				  border-radius: 4px;
+				  text-align: center;}
+
+h1 {font-size: 28pt;
+	text-align: center;
+	margin-top: 30px;
+	/*margin-bottom: 35px;*/}
+
+span#gold {color: #FFD700;}	
+
+#btnWrapper	{text-align: center;
+			 margin-top: 125px;}
+
+button#begin {width: 200px;
+			  background-color: #FFD700;
+			  text-shadow: none;
+			  border-radius: 2px;
+			  font-size: 11pt;
+			  font-weight: bold;}
+
+button#begin:hover {color: #FFD700;
+					background-color: #000}			  	
+
+.btn-default {background-image: none;}			  
+
+div#gameStart {display: none;
+			   margin-top: 20px;}	
+
+#divCorrectAnswers {display: none;}
+
+p.timeRemaining {text-align: center;
+				 font-size: 14pt;
+				 margin-bottom: 20px;
+				 margin-top: 2px}
+
+span#time {font-weight: bold;}
+
+p.answers {color: #FFD700;
+	       font-weight: bold;
+	   	   width: 100px;
+	   	   margin: 10px auto;}
+
+p.answers:hover {font-size: 16pt;
+				 color: #FFF;}			        				 		  
