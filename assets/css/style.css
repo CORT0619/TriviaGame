@@ -37,6 +37,8 @@ div#gameStart {display: none;
 
 #divCorrectAnswers {display: none;}
 
+#divAnswers {display: none;}
+
 p.timeRemaining {text-align: center;
 				 font-size: 14pt;
 				 margin-bottom: 20px;

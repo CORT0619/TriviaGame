@@ -63,7 +63,7 @@ var app = {
 
 		if(app.timer == 0){
 
-			clearInterval(app.beginInt);
+			/*clearInterval(app.beginInt);
 			$('#gameStart').hide();
 			$('#divCorrectAnswers').show();
 			$('#pCorrectAnswer span').html(app.correctAnswers[app.incrementQs]);
@@ -71,15 +71,19 @@ var app = {
 
 			console.log(app.correctAnswers[app.incrementQs]);
 
-			$('#elapsedTime').html(app.timer);
+			$('#elapsedTime').html(app.timer);*/
+
+			app.oufOfTime();
 
 		//} else if(app.userAnswers.length != 0 && app.userAnswers.length != app.incrementQs+1){
-		} else if(app.btnClicked == true;){
+		} else if(app.btnClicked == true && app.correctAnswers[incrementQs] == app.userAnswers[incrementQs]){
 		
-		console.log("length is " + app.userAnswers.length);
-		console.log("other is " + app.incrementQs+1);	
+			console.log("length is " + app.userAnswers.length);
+			console.log("other is " + app.incrementQs+1);	
 
-			$('#timeRemaining').css('display', 'block');
+			app.answersCorrect();
+
+		/*	$('#timeRemaining').css('display', 'block');
 
 			$('#elapsedTime').html(app.timer);
 
@@ -88,9 +92,50 @@ var app = {
 
 			$('#divCorrectAnswers').show();
 			$('#gameStart').hide();
-			app.btnClicked = false;
+			app.btnClicked = false;*/
 
+		} else if(app.btnClicked == true && app.correctAnswers[incrementQs] != app.userAnswers[incrementQs]){
+
+			app.answersWrong();
 		}
+
+	},
+
+	answersCorrect: function(){
+
+		$('#divAnswers').show();
+		$('#gameStart').hide();
+		$('#outOfTime').hide();		
+		$('#answers').css('display', 'block');
+		$('#timeRemaining').css('display', 'block');
+		$('#elapsedTime').html(app.timer);
+		clearInterval(app.beginInt);
+		app.btnClicked = false;
+	},
+
+	answersWrong: function(){
+
+		$('#divAnswers').show();
+		$('#gameStart').hide();
+		$('#outOfTime').hide();
+		$('#pCorrectAnswer').show();
+		$('#pCorrectAnswer span').html(app.correctAnswers[app.incrementQs]);
+		$('#timeRemaining').css('display', 'block');
+		$('#elapsedTime').html(app.timer);
+		clearInterval(app.beginInt);
+		app.btnClicked = false;
+
+	},
+
+	oufOfTime: function(){
+
+		app.userAnswers.push(""); // placeholder, MAY NEED TO CHANGE
+		$('#divAnswers').show();
+		$('#gameStart').hide();
+		$('#pCorrectAnswer span').html(app.correctAnswers[app.incrementQs]);
+		$('#pCorrectAnswer').show();
+		$('#timeRemaining').css('display', 'block');
+		$('#elapsedTime').html(app.timer);				
 
 	}
 
