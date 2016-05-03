@@ -35,14 +35,22 @@ var app = {
 
 	userAnswers: [],
 
-	//timePerQuestion: 45 * 1000,
-
 	incrementQs: 0,
 	beginInt: 0,
+
 	timer: 45,
 	btnClicked: false,
 
 	beginGame: function(){
+
+		console.log(app.incrementQs);
+
+		if(app.incrementQs >= 1){
+			clearInterval(app.displayNextInt);
+			$('#gameStart').show();
+			$('#divAnswers').hide();	
+		}
+
 
 		$('p.questions').html(app.qAndA[app.incrementQs].question);
 		$('p.answer1').html(app.qAndA[app.incrementQs].pos1);
@@ -51,9 +59,7 @@ var app = {
 		$('p.answer4').html(app.qAndA[app.incrementQs].pos4);
 
 		app.beginInt = setInterval(app.count, 1000);
-		this.incrementQs++;
-		//console.log(app.incrementQs);
-
+		//app.incrementQs++;
 	},
 
 	count: function(){
@@ -63,36 +69,11 @@ var app = {
 
 		if(app.timer == 0){
 
-			/*clearInterval(app.beginInt);
-			$('#gameStart').hide();
-			$('#divCorrectAnswers').show();
-			$('#pCorrectAnswer span').html(app.correctAnswers[app.incrementQs]);
-			$('#pCorrectAnswer span').css('font-weight', 'bold');
-
-			console.log(app.correctAnswers[app.incrementQs]);
-
-			$('#elapsedTime').html(app.timer);*/
-
 			app.oufOfTime();
 
-		//} else if(app.userAnswers.length != 0 && app.userAnswers.length != app.incrementQs+1){
 		} else if(app.btnClicked == true && app.correctAnswers[app.incrementQs] == app.userAnswers[app.incrementQs]){
 		
-			console.log("length is " + app.userAnswers.length);
-			console.log("other is " + app.incrementQs+1);	
-
 			app.answersCorrect();
-
-		/*	$('#timeRemaining').css('display', 'block');
-
-			$('#elapsedTime').html(app.timer);
-
-			clearInterval(app.beginInt);
-			console.log(app.userAnswers);
-
-			$('#divCorrectAnswers').show();
-			$('#gameStart').hide();
-			app.btnClicked = false;*/
 
 		} else if(app.btnClicked == true && app.correctAnswers[app.incrementQs] != app.userAnswers[app.incrementQs]){
 
@@ -119,6 +100,10 @@ var app = {
 
 		$('#pic').append(newImg);		
 		app.btnClicked = false;
+
+		app.displayNextInt = setInterval(app.beginGame, 5000);
+		$(newImg).remove();
+		app.incrementQs++;
 	},
 
 	answersWrong: function(){
@@ -139,6 +124,9 @@ var app = {
 		$('#pic').append(newImg);
 
 		app.btnClicked = false;
+		app.displayNextInt = setInterval(app.beginGame, 5000);
+		$(newImg).remove();
+		app.incrementQs++;
 
 	},
 
@@ -156,7 +144,16 @@ var app = {
 
 		var newImg = $("<img>").attr('src', app.qAndA[app.incrementQs].imgUrl).attr('width', '100px').attr('id', 'correctMovieImage');
 
-		$('#pic').append(newImg);					
+		$('#pic').append(newImg);
+		$(newImg).remove();
+		app.displayNextInt = setInterval(app.beginGame, 5000);
+
+		app.incrementQs++;				
+
+	},
+
+	restart: function(){
+
 
 	}
 
