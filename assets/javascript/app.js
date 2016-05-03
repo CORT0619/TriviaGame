@@ -5,7 +5,7 @@ var app = {
 			pos2: "Insurgent",
 			pos3: "Reliance",
 			pos4: "Defiance",
-			imgUrl: ""},
+			imgUrl: "assets/images/insurgent.jpg"},
 		   {question: "What trilogy of superhero movies featured actor Tobey Maguire as the main character?",
 			pos1: "X-Men",
 			pos2: "Batman",
@@ -76,7 +76,7 @@ var app = {
 			app.oufOfTime();
 
 		//} else if(app.userAnswers.length != 0 && app.userAnswers.length != app.incrementQs+1){
-		} else if(app.btnClicked == true && app.correctAnswers[incrementQs] == app.userAnswers[incrementQs]){
+		} else if(app.btnClicked == true && app.correctAnswers[app.incrementQs] == app.userAnswers[app.incrementQs]){
 		
 			console.log("length is " + app.userAnswers.length);
 			console.log("other is " + app.incrementQs+1);	
@@ -94,7 +94,7 @@ var app = {
 			$('#gameStart').hide();
 			app.btnClicked = false;*/
 
-		} else if(app.btnClicked == true && app.correctAnswers[incrementQs] != app.userAnswers[incrementQs]){
+		} else if(app.btnClicked == true && app.correctAnswers[app.incrementQs] != app.userAnswers[app.incrementQs]){
 
 			app.answersWrong();
 		}
@@ -105,11 +105,17 @@ var app = {
 
 		$('#divAnswers').show();
 		$('#gameStart').hide();
-		$('#outOfTime').hide();		
+		$('#outOfTime').hide();
+		$('#wrongMsg').hide();		
 		$('#answers').css('display', 'block');
 		$('#timeRemaining').css('display', 'block');
 		$('#elapsedTime').html(app.timer);
+
 		clearInterval(app.beginInt);
+
+		var newImg = $("<img>").attr('src', app.qAndA[app.incrementQs].imgUrl).attr('width', '100px');
+
+		$('#pic').append(newImg);		
 		app.btnClicked = false;
 	},
 
@@ -118,11 +124,17 @@ var app = {
 		$('#divAnswers').show();
 		$('#gameStart').hide();
 		$('#outOfTime').hide();
+		$('#wrongMsg').show();
 		$('#pCorrectAnswer').show();
 		$('#pCorrectAnswer span').html(app.correctAnswers[app.incrementQs]);
 		$('#timeRemaining').css('display', 'block');
 		$('#elapsedTime').html(app.timer);
 		clearInterval(app.beginInt);
+
+		var newImg = $("<img>").attr('src', app.qAndA[app.incrementQs].imgUrl).attr('width', '100px');
+
+		$('#pic').append(newImg);
+
 		app.btnClicked = false;
 
 	},
@@ -134,8 +146,13 @@ var app = {
 		$('#gameStart').hide();
 		$('#pCorrectAnswer span').html(app.correctAnswers[app.incrementQs]);
 		$('#pCorrectAnswer').show();
+		$('#wrongMsg').hide();		
 		$('#timeRemaining').css('display', 'block');
-		$('#elapsedTime').html(app.timer);				
+		$('#elapsedTime').html(app.timer);	
+
+		var newImg = $("<img>").attr('src', app.qAndA[app.incrementQs].imgUrl).attr('width', '100px');
+
+		$('#pic').append(newImg);					
 
 	}
 

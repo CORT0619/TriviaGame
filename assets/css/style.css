@@ -35,7 +35,7 @@ button#begin:hover {color: #FFD700;
 div#gameStart {display: none;
 			   margin-top: 20px;}	
 
-#divCorrectAnswers {display: none;}
+/*#divCorrectAnswers {display: none;}*/
 
 #divAnswers {display: none;}
 
