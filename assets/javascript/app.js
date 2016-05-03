@@ -11,25 +11,25 @@ var app = {
 			pos2: "Batman",
 			pos3: "Spider-Man",
 			pos4: "Superman",
-			imgUrl: ""},
+			imgUrl: "assets/images/spidey.jpg"},
 		   {question: "In the X-Men movies what is the name of Patrick Stewart's character?",
 			pos1: "Professor X",
 			pos2: "Professor K",
 			pos3: "Mr. X",
 			pos4: "Agent M",
-			imgUrl: ""},
+			imgUrl: "assets/images/xmen.jpg"},
 		   {question: "Which movie starred Michael J. Fox and was filmed in the 80s?",
 			pos1: "Ferris Bueller's Day Off",
 			pos2: "Back to the Future",
 			pos3: "E.T. the Extra-Terrestrial",
 			pos4: "Ghostbusters",
-			imgUrl: ""},
+			imgUrl: "assets/images/back-to-future.jpg"},
 		   {question: "What movie used the term a dream within a dream?",
 		    pos1: "Shutter Island",
 		    pos2: "The Adjustment Bureau",
 		    pos3: "Avatar",
 		    pos4: "Inception",
-			imgUrl: ""}],
+			imgUrl: "assets/images/inception.jpg"}],
 
 	correctAnswers: ['Insurgent', 'Spider-Man', 'Professor X', 'Back to the Future', 'Inception'],
 
@@ -50,16 +50,14 @@ var app = {
 
 		} else {
 
-			console.log(app.incrementQs);
-			app.timer = 45;
-
 			if(app.incrementQs >= 1){
 				clearInterval(app.displayNextInt);
 				$('#gameStart').show();
 				$('#divAnswers').hide();
-
+				app.timer = 45;
+				console.log(app.timer);
+				$('#time').html(app.timer); //??
 			}
-
 
 			$('p.questions').html(app.qAndA[app.incrementQs].question);
 			$('p.answer1').html(app.qAndA[app.incrementQs].pos1);
@@ -97,6 +95,11 @@ var app = {
 
 	answersCorrect: function(){
 
+		if(newImg != ""){
+
+			$('#pic').empty();
+		}
+
 		$('#divAnswers').show();
 		$('#gameStart').hide();
 		$('#outOfTime').hide();
@@ -117,11 +120,15 @@ var app = {
 		app.displayNextInt = setInterval(app.beginGame, 5000);
 
 		app.incrementQs++;
-		$(newImg).remove();
 		//app.timer = 45;	
 	},
 
 	answersWrong: function(){
+
+		if(newImg != ""){
+
+			$('#pic').empty();
+		}
 
 		$('#divAnswers').show();
 		$('#gameStart').hide();
@@ -142,11 +149,15 @@ var app = {
 		app.displayNextInt = setInterval(app.beginGame, 5000);
 		
 		app.incrementQs++;
-		$(newImg).remove();
 		//app.timer = 45;	
 	},
 
 	oufOfTime: function(){
+
+		if(newImg != ""){
+
+			$('#pic').empty();
+		}
 
 		app.userAnswers.push(""); // placeholder, MAY NEED TO CHANGE
 		$('#divAnswers').show();
@@ -164,15 +175,18 @@ var app = {
 
 		app.displayNextInt = setInterval(app.beginGame, 5000);
 
-		app.incrementQs++;	
-		$(newImg).remove();		
+		app.incrementQs++;			
 		//app.timer = 45;		
 
 	},
 
 	restart: function(){
 
+		app.incrementQs = 0;
+		app.userAnswers.length = 0;
+		app.timer = 45;
 
+		app.beginGame();
 	}
 
 
