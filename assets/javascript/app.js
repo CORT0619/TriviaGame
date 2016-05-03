@@ -44,11 +44,13 @@ var app = {
 	beginGame: function(){
 
 		console.log(app.incrementQs);
+		app.timer = 45;
 
 		if(app.incrementQs >= 1){
 			clearInterval(app.displayNextInt);
 			$('#gameStart').show();
-			$('#divAnswers').hide();	
+			$('#divAnswers').hide();
+
 		}
 
 
@@ -102,8 +104,10 @@ var app = {
 		app.btnClicked = false;
 
 		app.displayNextInt = setInterval(app.beginGame, 5000);
-		$(newImg).remove();
+
 		app.incrementQs++;
+		$(newImg).remove();
+		//app.timer = 45;	
 	},
 
 	answersWrong: function(){
@@ -125,9 +129,10 @@ var app = {
 
 		app.btnClicked = false;
 		app.displayNextInt = setInterval(app.beginGame, 5000);
-		$(newImg).remove();
+		
 		app.incrementQs++;
-
+		$(newImg).remove();
+		//app.timer = 45;	
 	},
 
 	oufOfTime: function(){
@@ -141,14 +146,16 @@ var app = {
 		$('#wrongMsg').hide();		
 		$('#timeRemaining').css('display', 'block');
 		$('#elapsedTime').html(app.timer);	
-
+		clearInterval(app.beginInt);
 		var newImg = $("<img>").attr('src', app.qAndA[app.incrementQs].imgUrl).attr('width', '100px').attr('id', 'correctMovieImage');
 
 		$('#pic').append(newImg);
-		$(newImg).remove();
+
 		app.displayNextInt = setInterval(app.beginGame, 5000);
 
-		app.incrementQs++;				
+		app.incrementQs++;	
+		$(newImg).remove();		
+		//app.timer = 45;		
 
 	},
 
