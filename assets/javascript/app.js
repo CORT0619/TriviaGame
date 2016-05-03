@@ -40,13 +40,17 @@ var app = {
 
 	timer: 45,
 	btnClicked: false,
+	numberCorrect: 0,
+	numberIncorrect: 0,
+	numberUnAnswered: 0,
+
 
 	beginGame: function(){
 
 		if(app.incrementQs == app.qAndA.length){
 
-			$('#restartPlaceholder').css('display', 'block');
-
+			app.gameFinished();
+			app.timer = 45;
 
 		} else {
 
@@ -55,7 +59,6 @@ var app = {
 				$('#gameStart').show();
 				$('#divAnswers').hide();
 				app.timer = 45;
-				console.log(app.timer);
 				$('#time').html(app.timer); //??
 			}
 
@@ -66,7 +69,6 @@ var app = {
 			$('p.answer4').html(app.qAndA[app.incrementQs].pos4);
 
 			app.beginInt = setInterval(app.count, 1000);
-			//app.incrementQs++;
 
 		}
 
@@ -112,15 +114,14 @@ var app = {
 
 		clearInterval(app.beginInt);
 
-		var newImg = $("<img>").attr('src', app.qAndA[app.incrementQs].imgUrl).attr('width', '100px').attr('id', 'correctMovieImage');
+		var newImg = $("<img>").attr('src', app.qAndA[app.incrementQs].imgUrl).attr('width', '115px').attr('id', 'correctMovieImage');
 
 		$('#pic').append(newImg);		
 		app.btnClicked = false;
 
 		app.displayNextInt = setInterval(app.beginGame, 5000);
-
+		app.numberCorrect++;
 		app.incrementQs++;
-		//app.timer = 45;	
 	},
 
 	answersWrong: function(){
@@ -141,15 +142,14 @@ var app = {
 		$('#elapsedTime').html(app.timer);
 		clearInterval(app.beginInt);
 
-		var newImg = $("<img>").attr('src', app.qAndA[app.incrementQs].imgUrl).attr('width', '100px').attr('id', 'correctMovieImage');
+		var newImg = $("<img>").attr('src', app.qAndA[app.incrementQs].imgUrl).attr('width', '115px').attr('id', 'correctMovieImage');
 
 		$('#pic').append(newImg);
 
 		app.btnClicked = false;
 		app.displayNextInt = setInterval(app.beginGame, 5000);
-		
+		app.numberIncorrect++;
 		app.incrementQs++;
-		//app.timer = 45;	
 	},
 
 	oufOfTime: function(){
@@ -169,14 +169,15 @@ var app = {
 		$('#timeRemaining').css('display', 'block');
 		$('#elapsedTime').html(app.timer);	
 		clearInterval(app.beginInt);
-		var newImg = $("<img>").attr('src', app.qAndA[app.incrementQs].imgUrl).attr('width', '100px').attr('id', 'correctMovieImage');
+		var newImg = $("<img>").attr('src', app.qAndA[app.incrementQs].imgUrl).attr('width', '115px').attr('id', 'correctMovieImage');
 
 		$('#pic').append(newImg);
 
+		app.numberUnAnswered++;
+
 		app.displayNextInt = setInterval(app.beginGame, 5000);
 
-		app.incrementQs++;			
-		//app.timer = 45;		
+		app.incrementQs++;	
 
 	},
 
@@ -184,12 +185,32 @@ var app = {
 
 		app.incrementQs = 0;
 		app.userAnswers.length = 0;
-		app.timer = 45;
+		$('#time').html("45");
 
 		app.beginGame();
+		$('#gameStart').show();
+		$('#gameComplete').hide();
+		$('#restartPlaceholder').css('display', 'none');
+		clearInterval(app.displayNextInt);
+		$('#elapsedTime').empty();
+		app.numberCorrect = 0;
+		app.numberIncorrect = 0;
+		app.numberUnAnswered = 0;
+	},
+
+	gameFinished: function(){
+
+		$('#restartPlaceholder').css('display', 'block');
+		$('#divAnswers').hide();
+		$('#gameStart').hide();
+
+		$('#gameComplete').css('display', 'block');
+
+		$('#gameOverCorrect span').html(app.numberCorrect);
+		$('#gameOverIncorrect span').html(app.numberIncorrect);
+		$('#unanswered span').html(app.numberUnAnswered);
+		app.timer = 45;
 	}
-
-
 };
 
 
@@ -198,7 +219,6 @@ $(document).ready(function(){
 	$('#begin').on('click', function(){
 
 		$('div#gameStart').css('display', 'block');
-		//$(this).css('display', 'none');
 		$('#btnWrapper').css('display', 'none');
 		$('.questions').html(app.beginGame);
 
@@ -207,7 +227,6 @@ $(document).ready(function(){
 	$('.answers').on('click', function(){
 
 		app.userAnswers.push($(this).text());
-		console.log(app.userAnswers);
 		app.btnClicked = true;
 
 	});
@@ -215,10 +234,7 @@ $(document).ready(function(){
 	$('#restartPlaceholder').on('click', function(){
 
 		app.restart();
+		
 	});
-
-
-
-
 
 });

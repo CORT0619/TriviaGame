@@ -2,18 +2,21 @@ body {color: #FFF;
 	  background-image: url('../images/movie_reel.png');}
 
 div#questionArea {background-color: #000;
-				  width: 60%;
-				  height: 400px;
+				  width: 70%;
+				  height: 435px;
 				  margin: 150px auto;
 				  padding-top: 20px;
 				  padding-bottom: 20px;
 				  border-radius: 4px;
-				  text-align: center;}
+				  text-align: center;
+				  box-shadow: 8px 8px 6px #808080;}
 
 h1 {font-size: 28pt;
 	text-align: center;
-	margin-top: 30px;
-	/*margin-bottom: 35px;*/}
+	margin-top: 30px;}
+
+p {font-size: 12pt;}
+
 
 span#gold {color: #FFD700;}	
 
@@ -50,9 +53,21 @@ p.answers {color: #FFD700;
 	   	   margin: 10px auto;
 	   	   cursor: pointer}
 
-p.answers:hover {font-size: 16pt;
+p.answers:hover {font-size: 14pt;
 				 color: #FFF;}
 
 #correctMovieImage	{margin-top: 20px;}
 
-#restartPlaceholder {display: none;}			 			        				 		  
+#gameComplete {display: none;
+			   margin-top: 20px;}
+
+p#restartPlaceholder button {width: 200px;
+							 background-color: #FFD700;
+							 text-shadow: none;
+							 border-radius: 2px;
+							 font-size: 11pt;
+							 font-weight: bold;
+							 margin-top: 20px;}
+
+p#restartPlaceholder button:hover {color: #FFD700;
+								   background-color: #000} 							 			   		 			        				 		  
