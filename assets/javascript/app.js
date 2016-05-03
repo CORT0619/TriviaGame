@@ -43,25 +43,36 @@ var app = {
 
 	beginGame: function(){
 
-		console.log(app.incrementQs);
-		app.timer = 45;
+		if(app.incrementQs == app.qAndA.length){
 
-		if(app.incrementQs >= 1){
-			clearInterval(app.displayNextInt);
-			$('#gameStart').show();
-			$('#divAnswers').hide();
+			$('#restartPlaceholder').css('display', 'block');
+
+
+		} else {
+
+			console.log(app.incrementQs);
+			app.timer = 45;
+
+			if(app.incrementQs >= 1){
+				clearInterval(app.displayNextInt);
+				$('#gameStart').show();
+				$('#divAnswers').hide();
+
+			}
+
+
+			$('p.questions').html(app.qAndA[app.incrementQs].question);
+			$('p.answer1').html(app.qAndA[app.incrementQs].pos1);
+			$('p.answer2').html(app.qAndA[app.incrementQs].pos2);
+			$('p.answer3').html(app.qAndA[app.incrementQs].pos3);
+			$('p.answer4').html(app.qAndA[app.incrementQs].pos4);
+
+			app.beginInt = setInterval(app.count, 1000);
+			//app.incrementQs++;
 
 		}
 
 
-		$('p.questions').html(app.qAndA[app.incrementQs].question);
-		$('p.answer1').html(app.qAndA[app.incrementQs].pos1);
-		$('p.answer2').html(app.qAndA[app.incrementQs].pos2);
-		$('p.answer3').html(app.qAndA[app.incrementQs].pos3);
-		$('p.answer4').html(app.qAndA[app.incrementQs].pos4);
-
-		app.beginInt = setInterval(app.count, 1000);
-		//app.incrementQs++;
 	},
 
 	count: function(){
@@ -185,6 +196,11 @@ $(document).ready(function(){
 		console.log(app.userAnswers);
 		app.btnClicked = true;
 
+	});
+
+	$('#restartPlaceholder').on('click', function(){
+
+		app.restart();
 	});
 
 

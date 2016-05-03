@@ -53,4 +53,6 @@ p.answers {color: #FFD700;
 p.answers:hover {font-size: 16pt;
 				 color: #FFF;}
 
-#correctMovieImage	{margin-top: 20px;}			 			        				 		  
+#correctMovieImage	{margin-top: 20px;}
+
+#restartPlaceholder {display: none;}			 			        				 		  
