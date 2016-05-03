@@ -42,14 +42,17 @@ div#gameStart {display: none;
 p.timeRemaining {text-align: center;
 				 font-size: 14pt;
 				 margin-bottom: 20px;
-				 margin-top: 2px}
+				 margin-top: 25px}
 
 span#time {font-weight: bold;}
 
 p.answers {color: #FFD700;
 	       font-weight: bold;
 	   	   width: 100px;
-	   	   margin: 10px auto;}
+	   	   margin: 10px auto;
+	   	   cursor: pointer}
 
 p.answers:hover {font-size: 16pt;
-				 color: #FFF;}			        				 		  
+				 color: #FFF;}
+
+#correctMovieImage	{margin-top: 20px;}			 			        				 		  

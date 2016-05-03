@@ -106,14 +106,16 @@ var app = {
 		$('#divAnswers').show();
 		$('#gameStart').hide();
 		$('#outOfTime').hide();
-		$('#wrongMsg').hide();		
+		$('#wrongMsg').hide();	
+		$('#correctMsg').show();
+		$('#pCorrectAnswer').hide();	
 		$('#answers').css('display', 'block');
 		$('#timeRemaining').css('display', 'block');
 		$('#elapsedTime').html(app.timer);
 
 		clearInterval(app.beginInt);
 
-		var newImg = $("<img>").attr('src', app.qAndA[app.incrementQs].imgUrl).attr('width', '100px');
+		var newImg = $("<img>").attr('src', app.qAndA[app.incrementQs].imgUrl).attr('width', '100px').attr('id', 'correctMovieImage');
 
 		$('#pic').append(newImg);		
 		app.btnClicked = false;
@@ -125,13 +127,14 @@ var app = {
 		$('#gameStart').hide();
 		$('#outOfTime').hide();
 		$('#wrongMsg').show();
+		$('#correctMsg').hide();
 		$('#pCorrectAnswer').show();
 		$('#pCorrectAnswer span').html(app.correctAnswers[app.incrementQs]);
 		$('#timeRemaining').css('display', 'block');
 		$('#elapsedTime').html(app.timer);
 		clearInterval(app.beginInt);
 
-		var newImg = $("<img>").attr('src', app.qAndA[app.incrementQs].imgUrl).attr('width', '100px');
+		var newImg = $("<img>").attr('src', app.qAndA[app.incrementQs].imgUrl).attr('width', '100px').attr('id', 'correctMovieImage');
 
 		$('#pic').append(newImg);
 
@@ -146,11 +149,12 @@ var app = {
 		$('#gameStart').hide();
 		$('#pCorrectAnswer span').html(app.correctAnswers[app.incrementQs]);
 		$('#pCorrectAnswer').show();
+		$('#correctMsg').hide();
 		$('#wrongMsg').hide();		
 		$('#timeRemaining').css('display', 'block');
 		$('#elapsedTime').html(app.timer);	
 
-		var newImg = $("<img>").attr('src', app.qAndA[app.incrementQs].imgUrl).attr('width', '100px');
+		var newImg = $("<img>").attr('src', app.qAndA[app.incrementQs].imgUrl).attr('width', '100px').attr('id', 'correctMovieImage');
 
 		$('#pic').append(newImg);					
 
